@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.User_SQL">
+
+	<resultMap type="UserVO" id="userVO">
+	</resultMap>
+
+	<select id="selectUser" parameterType="UserVO" resultType="UserVO">
+		SELECT
+		id
+		,pw
+		,nickname
+		,platform		
+		FROM
+		user
+		WHERE ID=#{id} AND PW=#{pw}
+	</select>
+
+	<insert id="insertUser" parameterType="UserVO">
+		insert into user(platform,id,pw,nickname,gender,email) values(#{platform},#{id},#{pw},#{nickname},#{gender},#{email})
+	</insert>
+	
+	<select id="idCheck" parameterType="String" resultType="int">
+		select count(*) from user where id=#{id}
+	</select>
+	
+	<select id="pwCheck" parameterType="String" resultType="int">
+		select count(*) from user where id=#{id}and pw=#{pw}
+	</select>
+	
+	<select id="nicknameCheck" parameterType="String" resultType="int">
+		select count(*) from user where nickname=#{nickname}
+	</select>
+	
+	<select id="emailCheck" parameterType="String" resultType="int">
+		select count(*) from user where email=#{email}
+	</select>
+	
+	<select id="kakaoidCheck" parameterType="String" resultType="int">
+		select count(*) from user where id=#{id}
+	</select>
+	
+	<select id="kakaoidLogin" parameterType="String" resultType="UserVO">
+		select * from user where id=#{id}
+	</select>
+	
+	<update id="modifyUser" parameterType="UserVO">
+		update user
+		<set>
+			<if test="nickname != null ">nickname=#{nickname},</if>
+			<if test="pw != null">pw=#{pw},</if>
+		</set>
+		where id=#{id}
+	</update>
+	
+	<delete id="deleteUser" parameterType="UserVO">
+		delete from user where id=#{id} and pw=#{pw}
+	</delete>
+	
+	<delete id="deletekakaoUser" parameterType="String">
+		delete from user where id=#{id}
+	</delete>
+</mapper>
