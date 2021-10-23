@@ -387,7 +387,7 @@ public class UserController {
 			session.invalidate();
 		}else {
 			//회원탈퇴 실패
-			return "/user/delete";
+			return "/user/wrong_password";
 		}
 		return "/main";
 	}

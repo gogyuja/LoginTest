@@ -25,7 +25,7 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public UserVO loginUser(UserVO userVO) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSessionFactory.openSession().selectOne(userMapper+"selectUser", userVO);
+		return sqlSessionFactory.openSession().selectOne(userMapper+"loginUser", userVO);
 	}
 
 	@Override

@@ -5,7 +5,7 @@
 	<resultMap type="UserVO" id="userVO">
 	</resultMap>
 
-	<select id="selectUser" parameterType="UserVO" resultType="UserVO">
+	<select id="loginUser" parameterType="UserVO" resultType="UserVO">
 		SELECT
 		id
 		,pw
